@@ -42,10 +42,6 @@ class UsersController extends AppController
             $user->Id_facebook = $profile['id'];
             $user->Last_name = $profile['last_name'];
             $user->Email = $profile['email'];
-            $user->Uuid = Text::uuid();
-            $user->Created = date('Y-m-d H:i');
-            $user->Gold = 1000.00;
-            $user->Rooms = json_encode(array('room_delivery'));
             $this->Users->save($user);
         }else{
             $user = $this->getUserFb($profile['id']);
@@ -54,7 +50,6 @@ class UsersController extends AppController
         $this->request->session()->write('uuid', $user->Uuid);
         $this->request->session()->write('first_name', $user->First_name);
         $this->request->session()->write('last_name', $user->Last_name);
-        $this->request->session()->write('gold', $user->Gold);
         
         $this->redirect(['controller' => 'Pages', 'action' => 'home']);
     }
