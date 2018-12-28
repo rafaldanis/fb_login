@@ -24,7 +24,7 @@ class PagesController extends AppController
         $this->set('LoginUrlFb',$this->Facebook->getLoginUrl());
     }
     public function loginHome(){
-        $this->set('active', 'home');
+
     }
     public function home(){
         if($this->User->isLogin()==false){
@@ -32,8 +32,5 @@ class PagesController extends AppController
         }else{
             $this->redirect(['controller' => 'Pages', 'action' => 'loginHome']);
         }
-    }
-    public function privatePolicy(){
-        $this->viewBuilder()->layout('home');
     }
 }

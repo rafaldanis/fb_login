@@ -20,7 +20,6 @@
     
 </head>
 <body>
-    <?= $this->element('Layout/navbar', ["active" => $active]); ?>
     <?= $this->Flash->render('auth') ?>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">

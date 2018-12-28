@@ -42,6 +42,8 @@ class UsersController extends AppController
             $user->Id_facebook = $profile['id'];
             $user->Last_name = $profile['last_name'];
             $user->Email = $profile['email'];
+            $user->Uuid = Text::uuid();
+            $user->Created = date('Y-m-d H:i');
             $this->Users->save($user);
         }else{
             $user = $this->getUserFb($profile['id']);
@@ -66,19 +68,5 @@ class UsersController extends AppController
         ->first();
         
         return $user;
-    }
-    public function getInfo(){
-        $this->viewBuilder()->setLayout('ajax');
-        $user = $this->Users->find()
-        ->where(['Uuid' =>  $this->request->session()->read('uuid')])
-        ->first();
-        
-        $return = array('Gold' => $user->Gold);
-        $this->request->session()->write('gold', $user->Gold);
-        
-        $this->set('data',$return);
-    }
-    public function createUser() {
-
     }
 }
